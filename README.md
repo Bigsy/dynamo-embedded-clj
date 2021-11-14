@@ -10,7 +10,7 @@ Embedded dynamo-local for clojure
 ```clojure
 (require 'dynamo-embedded-clj.core)
 
-;; Start an embedded pg with default port:
+;; Start a local dynamo with default port:
 (init-dynamo)
 
 ;; another call will halt the previous system:
@@ -22,7 +22,7 @@ Embedded dynamo-local for clojure
 
 ### Testing:
 
-**NOTE**: these will halt running pg-embedded instances
+**NOTE**: these will halt running dynamo instances
 
 ```clojure
 (require 'clojure.test)
@@ -45,4 +45,3 @@ Embedded dynamo-local for clojure
 (with-dynamo default-config
 	,,, :do-something ,,,)
 ```
-
