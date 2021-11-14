@@ -92,7 +92,6 @@
 (defn handle-shutdown
   "Kill the DynamoDB Local process on JVM shutdown."
   [dynamo-process]
-  #p dynamo-process
   (doto dynamo-process (.destroy) (.waitFor))
   (log/info (str "Exited" {:exit-value (.exitValue dynamo-process)})))
 
