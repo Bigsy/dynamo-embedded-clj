@@ -20,6 +20,7 @@
 
 (deftest can-wrap-around
   (testing "using defaults"
+    (far/list-tables client-opts)
     (far/create-table client-opts :my-table
                       [:id :n]
                       {:throughput {:read 1 :write 1}

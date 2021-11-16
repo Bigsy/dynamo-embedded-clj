@@ -88,7 +88,7 @@
 
 
 (defn- isM1Mac? []
-  (= "aarch64" (:arch host)))
+  (and (= "Mac OS X" (:name host)) (= "aarch64" (:arch host))))
 
 (defn ensure-installed
   "Download and unpack DynamoDB Local if it hasn't been already."
@@ -97,7 +97,7 @@
     (download-dynamo download-url)
     (unpack-dynamo)
     (when isM1Mac? (io/copy (io/as-file "resources/libsqlite4java-osx-arm64-1.0.392.dylib")
-                            (io/file dynamo-directory "DynamoDBLocal_lib/libsqlite4java-osx-arm64-1.0.392.dylib")))))
+                            (io/file dynamo-directory "DynamoDBLocal_lib/libsqlite4java-osx.dylib")))))
 
 
 (defn handle-shutdown
