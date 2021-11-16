@@ -12,6 +12,10 @@
 
 (def ^:private dynamo-directory (str (System/getProperty "user.home") File/separator ".clj-dynamodb-local"))
 
+(def ^:private host {:name (System/getProperty "os.name")
+                     :version (System/getProperty "os.version")
+                     :arch (System/getProperty "os.arch")})
+
 (defn- ->path
   "Create a path from the given strings."
   [str & strs]
@@ -82,12 +86,19 @@
   (let [zip-file (->path dynamo-directory "dynamo.zip")]
     (.extractAll (ZipFile. (str zip-file)) dynamo-directory)))
 
+
+(defn- isM1Mac? []
+  (and (= "Mac OS X" (:name host)) (= "aarch64" (:arch host))))
+
 (defn ensure-installed
   "Download and unpack DynamoDB Local if it hasn't been already."
   []
   (when-not (exists? (->path dynamo-directory "dynamo.zip"))
     (download-dynamo download-url)
-    (unpack-dynamo)))
+    (unpack-dynamo)
+    (when isM1Mac? (io/copy (io/as-file "resources/libsqlite4java-osx-arm64-1.0.392.dylib")
+                            (io/file dynamo-directory "DynamoDBLocal_lib/libsqlite4java-osx.dylib")))))
+
 
 (defn handle-shutdown
   "Kill the DynamoDB Local process on JVM shutdown."

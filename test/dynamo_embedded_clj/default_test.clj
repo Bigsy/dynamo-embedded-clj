@@ -14,11 +14,22 @@
 (def client-opts
   {:access-key "eqweqwewqeqweqwe"
    :secret-key "qewqeqwewqeqweqw"
-   :endpoint "http://localhost:8000"})
+   :endpoint   "http://localhost:8000"})
 
 
 
 (deftest can-wrap-around
   (testing "using defaults"
-      (is (= ()
-             (far/list-tables client-opts)))))
+    (far/list-tables client-opts)
+    (far/create-table client-opts :my-table
+                      [:id :n]
+                      {:throughput {:read 1 :write 1}
+                       :block? true})
+    (is (= '(:my-table) (far/list-tables client-opts)))
+    (far/put-item client-opts
+                  :my-table
+                  {:id 0
+                   :name "Steve"})
+
+    (is (= {:id 0N, :name "Steve"} (far/get-item client-opts :my-table {:id 0})))
+    (far/delete-table client-opts :my-table)))

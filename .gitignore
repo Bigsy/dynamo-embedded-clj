@@ -14,4 +14,3 @@ profiles.clj
 .idea
 *.iml
 *.log
-resources/

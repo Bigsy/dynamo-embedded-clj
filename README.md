@@ -1,6 +1,6 @@
 # dynamo-embedded-clj
 
-Embedded dynamo-local for clojure
+Embedded dynamo-local for clojure with support for apple M1 macs
 
 ## Usage
 
