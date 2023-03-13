@@ -7,8 +7,7 @@
 
 (def default-config
   {:port 8000
-   :in-memory? true
-   :shared-db? true})
+   :in-memory? true})
 
 (defn ->ig-config [config]
   {:dynamo-embedded-clj.dynamo/dynamo (merge default-config config)})
