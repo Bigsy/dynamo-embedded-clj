@@ -85,7 +85,10 @@
   []
   (when-not (exists? (->path dynamo-directory "dynamo.zip"))
     (download-dynamo download-url)
-    (unpack-dynamo)))
+    (unpack-dynamo)
+    (when isM1Mac? (io/copy (io/as-file "resources/libsqlite4java-osx-arm64-1.0.392.dylib")
+                            (io/file dynamo-directory "DynamoDBLocal_lib/libsqlite4java-osx.dylib")))))
+
 
 
 (defn handle-shutdown
