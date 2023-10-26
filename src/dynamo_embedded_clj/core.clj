@@ -41,8 +41,8 @@
        (reset! state/state
                {:system (ig/init ig-config)
                 :config ig-config})
-       (retry 20 (when (:error @(http/get (format "http://localhost:%s/shell/" (:port config))))
-                   (do (Thread/sleep 100) (throw (Exception.)))))
+       (retry 40 (when (:error @(http/get (format "http://localhost:%s/shell/" (:port config))))
+                   (do (Thread/sleep 200) (throw (Exception.)))))
        (catch clojure.lang.ExceptionInfo ex
          (ig/halt! (:system (ex-data ex)))
          (throw (.getCause ex)))))))

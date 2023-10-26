@@ -59,8 +59,6 @@
   [config]
   (let [dynamo (->> (build-dynamo-command config)
                     (.exec (Runtime/getRuntime)))]
-
-    (Thread/sleep 100)
     (log/info "Started DynamoDB Local")
     dynamo))
 
