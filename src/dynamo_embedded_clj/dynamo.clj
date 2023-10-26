@@ -8,7 +8,7 @@
            [java.nio.file.attribute FileAttribute]
            [net.lingala.zip4j.core ZipFile]))
 
-(def ^:private download-url "https://d1ni2b6xgvw0s0.cloudfront.net/dynamodb_local_latest.zip")
+(def ^:private download-url "https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_latest.zip")
 
 (def dynamo-directory (str (System/getProperty "user.home") File/separator ".clj-dynamodb-local"))
 
@@ -60,7 +60,7 @@
   (let [dynamo (->> (build-dynamo-command config)
                     (.exec (Runtime/getRuntime)))]
 
-    (Thread/sleep 500)
+    (Thread/sleep 100)
     (log/info "Started DynamoDB Local")
     dynamo))
 
