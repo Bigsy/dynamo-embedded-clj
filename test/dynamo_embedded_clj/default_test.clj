@@ -1,12 +1,24 @@
 (ns dynamo-embedded-clj.default-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer :all]
             [taoensso.faraday :as far]
-            [dynamo-embedded-clj.core :as sut]))
+            [dynamo-embedded-clj.core :as sut]
+            [dynamo-embedded-clj.dynamo :as dy]))
 
 (use-fixtures :once sut/with-dynamo-fn)
 
+(defn delete-dir [dir]
+  (let [dir (java.io.File. dir)]
+    (when (.exists dir)
+      (doseq [file (.listFiles dir)]
+        (if (.isDirectory file)
+          (delete-dir (.getAbsolutePath file))
+          (.delete file)))
+      (.delete dir))))
+
 (defn around-all
   [f]
+  (delete-dir dy/dynamo-directory)
   (sut/with-dynamo-fn f))
 
 (use-fixtures :once around-all)
@@ -15,7 +27,6 @@
   {:access-key "eqweqwewqeqweqwe"
    :secret-key "qewqeqwewqeqweqw"
    :endpoint   "http://localhost:8000"})
-
 
 
 (deftest can-wrap-around

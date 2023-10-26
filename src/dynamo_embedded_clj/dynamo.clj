@@ -10,7 +10,7 @@
 
 (def ^:private download-url "https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip")
 
-(def ^:private dynamo-directory (str (System/getProperty "user.home") File/separator ".clj-dynamodb-local"))
+(def dynamo-directory (str (System/getProperty "user.home") File/separator ".clj-dynamodb-local"))
 
 (def ^:private host {:name (System/getProperty "os.name")
                      :version (System/getProperty "os.version")
