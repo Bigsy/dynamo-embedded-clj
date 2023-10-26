@@ -8,7 +8,7 @@
            [java.nio.file.attribute FileAttribute]
            [net.lingala.zip4j.core ZipFile]))
 
-(def ^:private download-url "https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip")
+(def ^:private download-url "https://d1ni2b6xgvw0s0.cloudfront.net/dynamodb_local_latest.zip")
 
 (def dynamo-directory (str (System/getProperty "user.home") File/separator ".clj-dynamodb-local"))
 
