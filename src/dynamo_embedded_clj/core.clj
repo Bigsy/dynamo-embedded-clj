@@ -3,14 +3,14 @@
             [clojure.tools.logging :as log]
             [integrant.core :as ig]
             [org.httpkit.client :as http]
-            [dynamo-embedded-clj.state :as state]))
+            [dynamo-embedded-clj.state :as state])
+  (:import (clojure.lang ExceptionInfo)))
 
 (def default-config
-  {:port 8000
-   :in-memory? true})
+  ["-inMemory" "-port" "8000"])
 
 (defn ->ig-config [config]
-  {:dynamo-embedded-clj.dynamo/dynamo (merge default-config config)})
+  {:dynamo-embedded-clj.dynamo-local/dynamo config})
 
 (defn halt-dynamo! []
   (when @state/state
@@ -41,16 +41,13 @@
        (reset! state/state
                {:system (ig/init ig-config)
                 :config ig-config})
-       (retry 40 (when (:error @(http/get (format "http://localhost:%s/shell/" (:port config))))
-                   (do (Thread/sleep 200) (throw (Exception.)))))
-       (catch clojure.lang.ExceptionInfo ex
+       (catch ExceptionInfo ex
          (ig/halt! (:system (ex-data ex)))
          (throw (.getCause ex)))))))
 
 (defn with-dynamo-fn
   "Startup with the specified configuration; executes the function then shuts down."
   ([config f]
-   {:pre [(map? config) (fn? f)]}
    (try
      (init-dynamo config)
      (f)

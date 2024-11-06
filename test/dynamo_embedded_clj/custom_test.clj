@@ -1,6 +1,5 @@
-(ns dynamo-embedded-clj.default-test
-  (:require [clojure.java.io :as io]
-            [clojure.test :refer :all]
+(ns dynamo-embedded-clj.custom-test
+  (:require [clojure.test :refer :all]
             [taoensso.faraday :as far]
             [dynamo-embedded-clj.core :as sut]))
 
@@ -9,14 +8,14 @@
 
 (defn around-all
   [f]
-  (sut/with-dynamo-fn f))
+  (sut/with-dynamo-fn ["-inMemory" "-port" "8010"] f))
 
 (use-fixtures :once around-all)
 
 (def client-opts
   {:access-key "eqweqwewqeqweqwe"
    :secret-key "qewqeqwewqeqweqw"
-   :endpoint   "http://localhost:8000"})
+   :endpoint   "http://localhost:8010"})
 
 
 (deftest can-wrap-around

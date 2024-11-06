@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.11.3"]
                  [integrant "0.8.0"]
+                 [com.amazonaws/DynamoDBLocal "2.5.2"]
                  [org.clojure/tools.logging "1.1.0"]
                  [org.clojure/tools.namespace "1.1.0"]
                  [org.slf4j/slf4j-jdk14 "1.7.30"]
