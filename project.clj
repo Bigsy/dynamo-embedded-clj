@@ -1,4 +1,4 @@
-(defproject org.clojars.bigsy/dynamo-embedded-clj "0.1.6"
+(defproject org.clojars.bigsy/dynamo-embedded-clj "2.0.0"
   :description "Embedded dynamodb for clojure"
   :url "https://github.com/Bigsy/dynamo-embedded-clj"
   :license {:name "Eclipse Public License"

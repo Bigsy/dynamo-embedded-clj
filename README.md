@@ -1,6 +1,15 @@
 # dynamo-embedded-clj
 
 Embedded dynamo-local for clojure with support for apple M1 macs
+# Note
+2.0.0 uses an in process server that requires jetty 12 this may cause compatibility issues
+
+0.1.7 launches a jar in a separate process and thus should be 100% compatible, just a tiny bit slower
+
+``` 
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "0.1.7"}
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "2.0.0"} 
+```
 
 ## Usage
 
