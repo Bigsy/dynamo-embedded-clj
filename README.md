@@ -41,3 +41,10 @@ config vector is optional - if you don't pass it default it is inMemory and port
 (with-dynamo default-config ;; default-config from lib core
 	,,, :do-something ,,,)
 ```
+
+### Other useful clojure wrapped embedded testing libs
+* https://github.com/Bigsy/pg-embedded-clj
+* https://github.com/Bigsy/redis-embedded-clj
+* https://github.com/Bigsy/s3-clj
+* https://github.com/Bigsy/elasticmq-clj
+* https://github.com/Bigsy/sns-clj

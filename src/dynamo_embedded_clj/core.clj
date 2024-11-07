@@ -1,8 +1,5 @@
 (ns dynamo-embedded-clj.core
-  (:require [clojure.pprint :as pprint]
-            [clojure.tools.logging :as log]
-            [integrant.core :as ig]
-            [org.httpkit.client :as http]
+  (:require [integrant.core :as ig]
             [dynamo-embedded-clj.state :as state])
   (:import (clojure.lang ExceptionInfo)))
 
@@ -32,9 +29,7 @@
 (defn init-dynamo
   ([] (init-dynamo default-config))
   ([config]
-   (let [ig-config (->ig-config config)
-         config-pp (with-out-str (pprint/pprint config))]
-     (log/info "starting dynamo with config:" config-pp)
+   (let [ig-config (->ig-config config)]
      (try
        (halt-dynamo!)
        (ig/load-namespaces ig-config)
