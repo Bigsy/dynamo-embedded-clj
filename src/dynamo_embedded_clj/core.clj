@@ -4,7 +4,7 @@
   (:import (clojure.lang ExceptionInfo)))
 
 (def default-config
-  ["-inMemory" "-port" "8000"])
+  ["-inMemory" "-port" "8000" "-disableTelemetry"])
 
 (defn ->ig-config [config]
   {:dynamo-embedded-clj.dynamo-local/dynamo config})
