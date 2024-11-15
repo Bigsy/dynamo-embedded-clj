@@ -24,9 +24,9 @@ org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "3.0.0"}
 ```
 
 ## Usage
-If using Cognitect aws dynamodb client you may find these useful for type conversions https://github.com/Bigsy/clj-dynamo-helpers
+https://clojars.org/org.clojars.bigsy/dynamo-embedded-clj/versions/
 
-[![Clojars Project](https://img.shields.io/clojars/v/org.clojars.bigsy/dynamo-embedded-clj.svg)](https://clojars.org/org.clojars.bigsy/dynamo-embedded-clj)
+If using Cognitect aws dynamodb client you may find these useful for type conversions https://github.com/Bigsy/clj-dynamo-helpers
 
 ### Development:
 
