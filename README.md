@@ -17,8 +17,8 @@ Version compatibility guide:
   - Latest DynamoDBLocal version
 
 ```
-org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "1.1.7"}
-org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "2.0.1"}
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "1.1.8"}
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "2.0.2"}
 org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "3.0.0"} 
  
 ```
