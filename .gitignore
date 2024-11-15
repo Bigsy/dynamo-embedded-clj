@@ -14,3 +14,7 @@ profiles.clj
 .idea
 *.iml
 *.log
+dynamodb-local-metadata.json
+.DS_Store
+.clj-kondo
+.lsp
