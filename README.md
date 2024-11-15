@@ -2,18 +2,32 @@
 
 Embedded dynamo-local for clojure with support for apple M1 macs
 # Note
-2.0.0 uses an in process server that requires jetty 12 this may cause compatibility issues
 
-0.1.7 launches a jar in a separate process and thus should be 100% compatible, just a tiny bit slower
+Version compatibility guide:
 
-``` 
-org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "0.1.7"}
-org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "2.0.0"} 
+- 3.x.x: Uses in-process server with Jetty 12 (required by DynamoDBLocal 2.5.x)
+  - Best for projects already using Jetty 12
+  
+- 2.x.x: Uses in-process server with Jetty 9 (required by DynamoDBLocal 1.x.x) 
+  - Broad compatibility with existing projects
+  
+- 1.x.x: Launches DynamoDBLocal jar in separate process
+  - Maximum compatibility across all projects
+  - Slightly longer startup time
+  - Latest DynamoDBLocal version
+
+```
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "1.1.8"}
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "2.0.2"}
+org.clojars.bigsy/dynamo-embedded-clj {:mvn/version "3.0.0"} 
+ 
 ```
 
 ## Usage
+If using Cognitect aws dynamodb client you may find these useful for type conversions https://github.com/Bigsy/clj-dynamo-helpers
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.bigsy/dynamo-embedded-clj.svg)](https://clojars.org/org.clojars.bigsy/dynamo-embedded-clj)
+
 ### Development:
 
 ```clojure
@@ -38,7 +52,7 @@ config vector is optional - if you don't pass it default it is inMemory and port
 ```clojure
 (require 'clojure.test)
 
-(use-fixtures :once with-dynamo-fn) ;; no config defaulkts
+(use-fixtures :once with-dynamo-fn) ;; no config defaults
 
 (defn around-all
   [f]

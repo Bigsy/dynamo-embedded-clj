@@ -16,3 +16,5 @@ profiles.clj
 *.log
 dynamodb-local-metadata.json
 .DS_Store
+.clj-kondo
+.lsp
