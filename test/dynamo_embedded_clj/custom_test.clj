@@ -8,7 +8,7 @@
 
 (defn around-all
   [f]
-  (sut/with-dynamo-fn ["-inMemory" "-port" "8010"] f))
+  (sut/with-dynamo-fn ["-inMemory" "-port" "8010" "-disableTelemetry"] f))
 
 (use-fixtures :once around-all)
 
